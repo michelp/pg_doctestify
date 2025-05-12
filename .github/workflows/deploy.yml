@@ -1,5 +1,9 @@
 name: CI & Deploy Docs
 
+permissions:
+  contents: write
+  pages: write
+  
 on:
   push:
     branches:
