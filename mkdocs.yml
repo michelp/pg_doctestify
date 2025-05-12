@@ -1,0 +1,8 @@
+site_name: Postgres Doctests
+
+nav:
+  - Home: index.md
+  - Demo: demo.md
+
+theme:
+  name: mkdocs
