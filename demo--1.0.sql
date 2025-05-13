@@ -1,1 +1,2 @@
--- Nothing to see here.
+-- Nothing to see here this is just a stub extension file to show off
+-- the doctests.
