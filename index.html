@@ -75,7 +75,7 @@
     <div id="toc-collapse" class="navbar-collapse collapse card bg-light">
         <ul class="nav flex-column">
             
-            <li class="nav-item" data-level="1"><a href="#pgdoctest" class="nav-link">pgdoctest</a>
+            <li class="nav-item" data-level="1"><a href="#pg_doctestify" class="nav-link">pg_doctestify</a>
               <ul class="nav flex-column">
             <li class="nav-item" data-level="2"><a href="#intro" class="nav-link">Intro</a>
               <ul class="nav flex-column">
@@ -92,8 +92,18 @@
 </div></div>
                     <div class="col-md-9" role="main">
 
-<h1 id="pgdoctest">pgdoctest</h1>
-<p>PostgreSQL Doctests</p>
+<h1 id="pg_doctestify">pg_doctestify</h1>
+<p>Turn PostgreSQL Doctests into Markdown</p>
+<blockquote>
+<p>NOTE: This is a different tool than the extension
+<a href="https://gitlab.com/dalibo/pg_doctest">pg_doctest</a>. <code>pg_doctestify</code>
+is not an extension but a script that turns Postgres regression test
+results into formatted markdown for publishing with a site generator
+tool like <a href="https://github.com/mkdocs/mkdocs">mkdocs</a>.  <code>pg_doctest</code>
+actually stores tests in the database as comments inside functions,
+so these two tools are pretty much orthogonal to each other and can
+probably be used together in interesting ways!</p>
+</blockquote>
 <h2 id="intro">Intro</h2>
 <p>Python has long had an awesome feature called
 <a href="https://docs.python.org/3/library/doctest.html">doctests</a> to test
@@ -105,15 +115,19 @@ tool][https://www.postgresql.org/docs/7.1/regress.html) called
 <code>pg_regress</code>.  It takes a SQL file, and an expected output, and runs
 the SQL comparing it to the expected results.  Importantly, pg_regress
 also passes the <em>comments</em> from the sql through to the output file.</p>
-<p>So, if you format your sql file comments as markdown, you get a very
-similar result as Python doctests.  You write tests, you write
-comments with markdown in them, and a this tool will run pg_regress
-and then transform the output file into a markdown file, complete with
-formatting, including code blocks around the input and output sql.
-This generated markdown can then be used with many common static site
-generation tools, like mkdocs.</p>
-<p>For some examples of this tool in real-world use, check out the
-following projects:</p>
+<p>So, if you format your sql file comments as
+<a href="https://www.markdownguide.org/">markdown</a>, you get a very similar
+result as Python doctests.  You write tests, you write comments with
+markdown in them, and a then run pg_regress as usual (typically with
+<code>make installcheck</code>) and then use this tool to transform the output
+file into a markdown file.</p>
+<p>This tool will strip sql comment prefixes and add formatting,
+including code blocks, around the input and output sql.  This
+generated markdown can then be used with many common static site
+generation tools, like mkdocs.  This documentation you are reading has
+been generated with this tool.</p>
+<p>For some examples of previous iterations of this tool in real-world
+use, check out the following projects:</p>
 <ul>
 <li>
 <p><a href="https://onesparse.com/docs.html">OneSparse</a> Postgres extension
@@ -127,16 +141,18 @@ following projects:</p>
 </li>
 </ul>
 <h2 id="usage">Usage</h2>
-<p>This tool is not itself an extension but rather a Python script
-included in this distribution.  It does contains a small pointless
-sample extension with a Makefile for building it and the documentation
-which uses the script.</p>
+<p>This tool is not itself a Postgres extension, but rather a Python
+script tool included in this distribution.  It does contains a small
+pointless sample extension with a Makefile for building it and the
+documentation which uses the script.</p>
 <p>There is no installation, you copy the script into your project and
 update your own Makefile to fit it into an existing extension.  Tested
 on Python 3.10 but should work with any reasonably modern Python 3.</p>
-<p>There is a <a href="./Dockerfile">Dockerfile</a> that sets up and runs the tests
-and runs mkdocs.  This would be a good place to start using it
-yourself.</p></div>
+<p>There is a Dockerfile that sets up and runs the tests and runs mkdocs
+to build the site locally.  This would be a good place to start using
+it yourself.  To see it fully rendered, make sure mkdocs is installed
+and first run <code>./test.sh</code> to run the docker build and then <code>mkdocs serve</code> 
+to serve it on localhost.</p></div>
             </div>
         </div>
 
@@ -217,5 +233,5 @@ yourself.</p></div>
 
 <!--
 MkDocs version : 1.4.2
-Build Date UTC : 2025-05-12 23:53:39.346980+00:00
+Build Date UTC : 2025-05-13 14:45:05.744763+00:00
 -->
