@@ -56,6 +56,11 @@ script tool included in this distribution.  It does contains a small
 pointless sample extension with a Makefile for building it and the
 documentation which uses the script.
 
+Clone the tool from [Github](https://github.com/michelp/pg_doctestify)
+and pick and choose what parts you want.  There's the main script, a
+Makefile target for building docs, and a Dockerfile to try it out
+quickly.
+
 There is no installation, you copy the script into your project and
 update your own Makefile to fit it into an existing extension.  Tested
 on Python 3.10 but should work with any reasonably modern Python 3.
